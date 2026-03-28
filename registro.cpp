@@ -4,45 +4,45 @@
 
 using namespace std;
 
-void ordina(vector<string>& nome, vector<string>& cognome, vector<float>& votomat, vector<float>& votoinf, vector<float>& votoita, vector<float>& media) {
-	for(int i = 0; i < cognome.size(); i++) {
-		for(int j = i + 1; j < cognome.size(); j++) {
-			if(cognome[i] > cognome[j] || (cognome[i] == cognome[j] && nome[i] > nome[j])) {
-				string tnome = nome[i];
-				nome[i] = nome[j];
-				nome[j] = tnome;
+void ordina(vector<string>& nomi, vector<string>& cognomi, vector<float>& voti_mat, vector<float>& voti_inf, vector<float>& voti_ita, vector<float>& medie) {
+	for(int i = 0; i < cognomi.size(); i++) {
+		for(int j = i + 1; j < cognomi.size(); j++) {
+			if(cognomi[i] > cognomi[j] || (cognomi[i] == cognomi[j] && nomi[i] > nomi[j])) {
+				string temp_nome = nomi[i];
+				nomi[i] = nomi[j];
+				nomi[j] = temp_nome;
 
-				string tcogn = cognome[i];
-				cognome[i] = cognome[j];
-				cognome[j] = tcogn;
+				string temp_cogn = cognomi[i];
+				cognomi[i] = cognomi[j];
+				cognomi[j] = temp_cogn;
 
-				float tmat = votomat[i];
-				votomat[i] = votomat[j];
-				votomat[j] = tmat;
+				float temp_mat = voti_mat[i];
+				voti_mat[i] = voti_mat[j];
+				voti_mat[j] = temp_mat;
 
-				float tinf = votoinf[i];
-				votoinf[i] = votoinf[j];
-				votoinf[j] = tinf;
+				float temp_inf = voti_inf[i];
+				voti_inf[i] = voti_inf[j];
+				voti_inf[j] = temp_inf;
 
-				float tita = votoita[i];
-				votoita[i] = votoita[j];
-				votoita[j] = tita;
+				float temp_ita = voti_ita[i];
+				voti_ita[i] = voti_ita[j];
+				voti_ita[j] = temp_ita;
 
-				float tmedia = media[i];
-				media[i] = media[j];
-				media[j] = tmedia;
+				float temp_med = medie[i];
+				medie[i] = medie[j];
+				medie[j] = temp_med;
 			}
 		}
 	}
 }
 
 int main() {
-	vector<string> nome;
-	vector<string> cognome;
-	vector<float> votomat;
-	vector<float> votoinf;
-	vector<float> votoita;
-	vector<float> media;
+	vector<string> nomi;
+	vector<string> cognomi;
+	vector<float> voti_mat;
+	vector<float> voti_inf;
+	vector<float> voti_ita;
+	vector<float> medie;
 	int scelta = -1;
 
 	while(scelta != 0) {
@@ -59,132 +59,132 @@ int main() {
 		cin >> scelta;
 
 		if(scelta == 1) {
-			string n, c;
-			float m, inf, ita;
+			string n_nome, n_cogn;
+			float v_mat, v_inf, v_ita;
 			cout << "inserisci nome: ";
-			cin >> n;
+			cin >> n_nome;
 			cout << "inserisci cognome: ";
-			cin >> c;
+			cin >> n_cogn;
 			cout << "voto matematica: ";
-			cin >> m;
+			cin >> v_mat;
 			cout << "voto informatica: ";
-			cin >> inf;
+			cin >> v_inf;
 			cout << "voto italiano: ";
-			cin >> ita;
+			cin >> v_ita;
 
-			nome.push_back(n);
-			cognome.push_back(c);
-			votomat.push_back(m);
-			votoinf.push_back(inf);
-			votoita.push_back(ita);
-			media.push_back((m + inf + ita) / 3.0);
+			nomi.push_back(n_nome);
+			cognomi.push_back(n_cogn);
+			voti_mat.push_back(v_mat);
+			voti_inf.push_back(v_inf);
+			voti_ita.push_back(v_ita);
+			medie.push_back((v_mat + v_inf + v_ita) / 3.0);
 
-			ordina(nome, cognome, votomat, votoinf, votoita, media);
+			ordina(nomi, cognomi, voti_mat, voti_inf, voti_ita, medie);
 			cout << "alunno aggiunto e registro ordinato.\n";
 		}
 		else if(scelta == 2) {
-			if(nome.size() == 0) {
+			if(nomi.size() == 0) {
 				cout << "registro vuoto.\n";
 			} else {
-				for(int i = 0; i < nome.size(); i++) {
-					cout << cognome[i] << " " << nome[i] << " - media: " << media[i] << "\n";
+				for(int i = 0; i < nomi.size(); i++) {
+					cout << cognomi[i] << " " << nomi[i] << " - media: " << medie[i] << "\n";
 				}
 			}
 		}
 		else if(scelta == 3) {
-			if(nome.size() == 0) {
+			if(nomi.size() == 0) {
 				cout << "registro vuoto.\n";
 			} else {
-				float sommatot = 0;
-				for(int i = 0; i < nome.size(); i++) {
-					sommatot += media[i];
+				float somma_tot = 0;
+				for(int i = 0; i < nomi.size(); i++) {
+					somma_tot += medie[i];
 				}
-				cout << "media della classe: " << sommatot / nome.size() << "\n";
+				cout << "media della classe: " << somma_tot / nomi.size() << "\n";
 			}
 		}
 		else if(scelta == 4) {
-			if(nome.size() == 0) {
+			if(nomi.size() == 0) {
 				cout << "registro vuoto.\n";
 			} else {
-				float somma = 0;
-				for(int i = 0; i < nome.size(); i++) {
-					somma += media[i];
+				float somma_voti = 0;
+				for(int i = 0; i < nomi.size(); i++) {
+					somma_voti += medie[i];
 				}
-				float mediaclasse = somma / nome.size();
-				cout << "media classe: " << mediaclasse << "\n\n";
+				float m_classe = somma_voti / nomi.size();
+				cout << "media classe: " << m_classe << "\n\n";
 				cout << "sopra la media:\n";
-				for(int i = 0; i < nome.size(); i++) {
-					if(media[i] >= mediaclasse) {
-						cout << "- " << cognome[i] << " " << nome[i] << "\n";
+				for(int i = 0; i < nomi.size(); i++) {
+					if(medie[i] >= m_classe) {
+						cout << "- " << cognomi[i] << " " << nomi[i] << "\n";
 					}
 				}
 				cout << "\nsotto la media:\n";
-				for(int i = 0; i < nome.size(); i++) {
-					if(media[i] < mediaclasse) {
-						cout << "- " << cognome[i] << " " << nome[i] << "\n";
+				for(int i = 0; i < nomi.size(); i++) {
+					if(medie[i] < m_classe) {
+						cout << "- " << cognomi[i] << " " << nomi[i] << "\n";
 					}
 				}
 			}
 		}
 		else if(scelta == 5) {
-			int mat;
-			float votocerc;
+			int mat_scelta;
+			float v_cercato;
 			cout << "scegli materia (1=matematica, 2=informatica, 3=italiano): ";
-			cin >> mat;
+			cin >> mat_scelta;
 			cout << "inserisci il voto da cercare: ";
-			cin >> votocerc;
+			cin >> v_cercato;
 			bool trovato = false;
-			for(int i = 0; i < nome.size(); i++) {
-				float votostud = 0;
-				if(mat == 1) votostud = votomat[i];
-				else if(mat == 2) votostud = votoinf[i];
-				else if(mat == 3) votostud = votoita[i];
+			for(int i = 0; i < nomi.size(); i++) {
+				float v_stud = 0;
+				if(mat_scelta == 1) v_stud = voti_mat[i];
+				else if(mat_scelta == 2) v_stud = voti_inf[i];
+				else if(mat_scelta == 3) v_stud = voti_ita[i];
 
-				if(votostud == votocerc) {
-					cout << "- " << cognome[i] << " " << nome[i] << "\n";
+				if(v_stud == v_cercato) {
+					cout << "- " << cognomi[i] << " " << nomi[i] << "\n";
 					trovato = true;
 				}
 			}
 			if(trovato == false) cout << "nessuno ha preso questo voto.\n";
 		}
 		else if(scelta == 6) {
-			if(nome.size() == 0) {
+			if(nomi.size() == 0) {
 				cout << "registro vuoto.\n";
 			} else {
-				float maxmat = 0, maxinf = 0, maxita = 0;
-				int idmat = 0, idinf = 0, idita = 0;
+				float max_m = 0, max_in = 0, max_it = 0;
+				int id_m = 0, id_in = 0, id_it = 0;
 
-				for(int i = 0; i < nome.size(); i++) {
-					if(votomat[i] > maxmat) {
-						maxmat = votomat[i];
-						idmat = i;
+				for(int i = 0; i < nomi.size(); i++) {
+					if(voti_mat[i] > max_m) {
+						max_m = voti_mat[i];
+						id_m = i;
 					}
-					if(votoinf[i] > maxinf) {
-						maxinf = votoinf[i];
-						idinf = i;
+					if(voti_inf[i] > max_in) {
+						max_in = voti_inf[i];
+						id_in = i;
 					}
-					if(votoita[i] > maxita) {
-						maxita = votoita[i];
-						idita = i;
+					if(voti_ita[i] > max_it) {
+						max_it = voti_ita[i];
+						id_it = i;
 					}
 				}
-				cout << "migliore in matematica: " << cognome[idmat] << " " << nome[idmat] << " (" << maxmat << ")\n";
-				cout << "migliore in informatica: " << cognome[idinf] << " " << nome[idinf] << " (" << maxinf << ")\n";
-				cout << "migliore in italiano: " << cognome[idita] << " " << nome[idita] << " (" << maxita << ")\n";
+				cout << "migliore in matematica: " << cognomi[id_m] << " " << nomi[id_m] << " (" << max_m << ")\n";
+				cout << "migliore in informatica: " << cognomi[id_in] << " " << nomi[id_in] << " (" << max_in << ")\n";
+				cout << "migliore in italiano: " << cognomi[id_it] << " " << nomi[id_it] << " (" << max_it << ")\n";
 			}
 		}
 		else if(scelta == 7) {
-			string nomecerc, cogncerc;
+			string no_cerca, co_cerca;
 			cout << "inserisci nome: ";
-			cin >> nomecerc;
+			cin >> no_cerca;
 			cout << "inserisci cognome: ";
-			cin >> cogncerc;
+			cin >> co_cerca;
 			bool trovato = false;
-			for(int i = 0; i < nome.size(); i++) {
-				if(nome[i] == nomecerc && cognome[i] == cogncerc) {
-					cout << "trovato: " << cognome[i] << " " << nome[i] << "\n";
-					cout << "mate: " << votomat[i] << ", info: " << votoinf[i] << ", ita: " << votoita[i] << "\n";
-					cout << "media: " << media[i] << "\n";
+			for(int i = 0; i < nomi.size(); i++) {
+				if(nomi[i] == no_cerca && cognomi[i] == co_cerca) {
+					cout << "trovato: " << cognomi[i] << " " << nomi[i] << "\n";
+					cout << "mate: " << voti_mat[i] << ", info: " << voti_inf[i] << ", ita: " << voti_ita[i] << "\n";
+					cout << "media: " << medie[i] << "\n";
 					trovato = true;
 				}
 			}
